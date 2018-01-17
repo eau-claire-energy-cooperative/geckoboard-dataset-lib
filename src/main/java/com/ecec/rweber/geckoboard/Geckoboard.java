@@ -1,6 +1,7 @@
 package com.ecec.rweber.geckoboard;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,6 +51,11 @@ public class Geckoboard {
 	}
 	
 	public boolean create(String dataset, FieldDefinition ... fields ){
+		//convenience for create
+		return this.create(dataset, null, fields);
+	}
+	
+	public boolean create(String dataset, String unique, FieldDefinition ... fields ){
 		//get the dataset in the right format
 		Map<String,Object> jsonData = new HashMap<String,Object>();
 		Map<String,FieldDefinition> fieldList = new HashMap<String,FieldDefinition>();
@@ -59,6 +65,12 @@ public class Geckoboard {
 		}
 		
 		jsonData.put("fields", fieldList);
+		
+		//if we have a unique entry
+		if(unique != null)
+		{
+			jsonData.put("unique_by",Collections.singletonList(unique));
+		}
 		
 		//send the http request
 		WebTarget target = this.createRequest("datasets",dataset);
