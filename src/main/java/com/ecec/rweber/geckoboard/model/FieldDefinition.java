@@ -3,7 +3,6 @@ package com.ecec.rweber.geckoboard.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @JsonRootName("data")
 public class FieldDefinition {

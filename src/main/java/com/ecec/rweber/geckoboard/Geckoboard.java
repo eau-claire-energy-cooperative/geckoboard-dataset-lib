@@ -1,6 +1,5 @@
 package com.ecec.rweber.geckoboard;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,13 +11,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
-
 import com.ecec.rweber.geckoboard.model.DataRow;
-import com.ecec.rweber.geckoboard.model.DataType;
 import com.ecec.rweber.geckoboard.model.FieldDefinition;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 
 public class Geckoboard {
 	public final String m_url = "https://api.geckoboard.com/";
@@ -80,7 +74,7 @@ public class Geckoboard {
 	}
 	
 	public boolean set(String dataset, List<DataRow> data){
-		//convience for replace
+		//convenience for replace
 		return this.replace(dataset, data);
 	}
 	
@@ -104,21 +98,5 @@ public class Geckoboard {
 		Response response = target.request().post(Entity.entity(jsonData,MediaType.APPLICATION_JSON_TYPE));
 		
 		return response.getStatus() == 200;
-	}
-	
-	public static void main(String[] args){
-		Geckoboard g = new Geckoboard("90281eeaab4c7be1aa904d830fa6e721");
-		
-		//System.out.println(g.create("icinga", new FieldDefinition(DataType.STRING,"service"),new FieldDefinition(DataType.STRING,"status")));
-		
-		//System.out.println(g.deleteDataset("icinga"));
-
-		List<DataRow> data = new ArrayList<DataRow>();
-		DataRow one = new DataRow();
-		one.addData(DataType.STRING, "service", "Cisco SG 500");
-		one.addData(DataType.STRING, "status", "WARNING");
-		data.add(one);
-		
-		System.out.println(g.append("icinga", data));
 	}
 }
