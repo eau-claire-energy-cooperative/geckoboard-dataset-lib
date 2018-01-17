@@ -1,5 +1,6 @@
 package com.ecec.rweber.geckoboard;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -87,6 +88,14 @@ public class Geckoboard {
 		Response response = target.request().put(Entity.entity(jsonData,MediaType.APPLICATION_JSON_TYPE));
 		
 		return response.getStatus() == 200;
+	}
+	
+	public boolean append(String dataset, DataRow row){
+		//convenience for when there is only one row to add
+		List<DataRow> data = new ArrayList<DataRow>();
+		data.add(row);
+		
+		return this.append(dataset,data);
 	}
 	
 	public boolean append(String dataset, List<DataRow> data){

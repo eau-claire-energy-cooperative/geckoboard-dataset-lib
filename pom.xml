@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.ecec</groupId>
   <artifactId>geckoboard-dataset-lib</artifactId>
-  <version>0.0.3</version>
+  <version>0.0.4</version>
   <name>Geckoboard Dataset Lib</name>
   
   <dependencies>
