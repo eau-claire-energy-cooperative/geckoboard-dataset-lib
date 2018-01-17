@@ -6,7 +6,7 @@ public enum DataType {
 
 	@JsonProperty("date")
 	DATE,
-	@JsonProperty("datatime")
+	@JsonProperty("datetime")
 	DATETIME,
 	@JsonProperty("number")
 	NUMBER,
