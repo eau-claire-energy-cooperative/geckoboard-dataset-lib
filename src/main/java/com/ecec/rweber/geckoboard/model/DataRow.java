@@ -1,6 +1,12 @@
 package com.ecec.rweber.geckoboard.model;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.format.ISODateTimeFormat;
+
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -22,6 +28,30 @@ public class DataRow {
 		m_data.put(column, value);
 	}
 	
+	public void addData(DataType type, String column, DateTime value){
+		//helper method for adding date/time values
+		String result = null;
+		
+		if(type == DataType.DATE){
+			//use the date format
+			DateTimeFormatter geckoFormat = DateTimeFormat.forPattern("yyyy-MM-dd");
+			result = geckoFormat.print(value);
+		}
+		else if(type == DataType.DATETIME)
+		{
+			//use the datetime format
+			DateTimeFormatter geckoFormatter = ISODateTimeFormat.dateTime();
+			result = geckoFormatter.print(value);
+		}
+		else
+		{
+			//just send the string
+			result = value.toString();
+		}
+		
+		this.addData(type, column,result);
+	}
+
 	public void addData(DataType type, String column, String value){
 		
 		if(type == DataType.NUMBER || type == DataType.PERCENTAGE){
