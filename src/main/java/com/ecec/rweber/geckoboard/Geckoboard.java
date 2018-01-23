@@ -43,11 +43,19 @@ public class Geckoboard {
 	}
 	
 	public boolean test(){
+		boolean result = false;
 		
-		WebTarget target = m_http.target(this.m_url);
-		Response response = target.request().get();
+		try{
+			WebTarget target = m_http.target(this.m_url);
+			Response response = target.request().get();
+			
+			result = response.getStatus() == 200;
+		}
+		catch(Exception e){
+			result = false;
+		}
 		
-		return response.getStatus() == 200;
+		return result;
 	}
 	
 	public boolean create(String dataset, FieldDefinition ... fields ){
