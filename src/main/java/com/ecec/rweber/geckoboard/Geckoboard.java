@@ -64,6 +64,8 @@ public class Geckoboard {
 	}
 	
 	public boolean create(String dataset, String unique, FieldDefinition ... fields ){
+		boolean result = false;
+		
 		//get the dataset in the right format
 		Map<String,Object> jsonData = new HashMap<String,Object>();
 		Map<String,FieldDefinition> fieldList = new HashMap<String,FieldDefinition>();
@@ -80,18 +82,36 @@ public class Geckoboard {
 			jsonData.put("unique_by",Collections.singletonList(unique));
 		}
 		
-		//send the http request
-		WebTarget target = this.createRequest("datasets",dataset);
-		Response response = target.request().put(Entity.entity(jsonData,MediaType.APPLICATION_JSON_TYPE));
+		try{
+			//send the http request
+			WebTarget target = this.createRequest("datasets",dataset);
+			Response response = target.request().put(Entity.entity(jsonData,MediaType.APPLICATION_JSON_TYPE));
+			
+			result =  response.getStatus() == 200;
+		}
+		catch(Exception e)
+		{
+			//don't pring anything here, just return false
+		}
 		
-		return response.getStatus() == 200;
+		return result;
 		
 	}
 	
 	public boolean delete(String dataset){
-		Response response = this.createRequest("datasets",dataset).request().delete(); 
+		boolean result = false;
 		
-		return response.getStatus() == 200;
+		try{
+			Response response = this.createRequest("datasets",dataset).request().delete(); 
+		
+			result =  response.getStatus() == 200;
+		}
+		catch(Exception e)
+		{
+			//don't pring anything here, just return false
+		}
+		
+		return result;
 	}
 	
 	public boolean set(String dataset, List<DataRow> data){
@@ -100,14 +120,24 @@ public class Geckoboard {
 	}
 	
 	public boolean replace(String dataset, List<DataRow> data){
+		boolean result = false;
+		
 		//wrap the list
 		Map<String,Object> jsonData = new HashMap<String,Object>();
 		jsonData.put("data", data);
 		
-		WebTarget target = this.createRequest("datasets",dataset,"data");
-		Response response = target.request().put(Entity.entity(jsonData,MediaType.APPLICATION_JSON_TYPE));
+		try{
+			WebTarget target = this.createRequest("datasets",dataset,"data");
+			Response response = target.request().put(Entity.entity(jsonData,MediaType.APPLICATION_JSON_TYPE));
 		
-		return response.getStatus() == 200;
+			result = response.getStatus() == 200;
+		}
+		catch(Exception e)
+		{
+			//don't pring anything here, just return false
+		}
+		
+		return result;
 	}
 	
 	public boolean append(String dataset, DataRow row){
@@ -119,13 +149,23 @@ public class Geckoboard {
 	}
 	
 	public boolean append(String dataset, List<DataRow> data){
+		boolean result = false;
+		
 		//wrap the list
 		Map<String,Object> jsonData = new HashMap<String,Object>();
 		jsonData.put("data", data);
 		
-		WebTarget target = this.createRequest("datasets",dataset,"data");
-		Response response = target.request().post(Entity.entity(jsonData,MediaType.APPLICATION_JSON_TYPE));
+		try{
+			WebTarget target = this.createRequest("datasets",dataset,"data");
+			Response response = target.request().post(Entity.entity(jsonData,MediaType.APPLICATION_JSON_TYPE));
 		
-		return response.getStatus() == 200;
+			result =  response.getStatus() == 200;
+		}
+		catch(Exception e)
+		{
+			//don't pring anything here, just return false
+		}
+		
+		return result;
 	}
 }
