@@ -1,5 +1,6 @@
 package com.ecec.rweber.geckoboard.model;
 import java.util.HashMap;
+
 import java.util.Map;
 
 import org.joda.time.DateTime;
@@ -9,6 +10,8 @@ import org.joda.time.format.ISODateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class DataRow {
 	@JsonIgnore
@@ -69,6 +72,19 @@ public class DataRow {
 		else {
 			m_data.put(column,value);
 		}
+	}
+	
+	@Override
+	public String toString(){
+		String result = "";
+		
+		try {
+			result = new ObjectMapper().writeValueAsString(m_data);
+		} catch (JsonProcessingException e) {
+
+		}
+		
+		return result;
 	}
 	
 	@JsonAnyGetter
