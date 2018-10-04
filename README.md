@@ -30,9 +30,7 @@ g.create("dataset_name", new FieldDefinition(DataType.STRING,"color","A Color"),
 //replace all data in a dataset
 List<DataRow> aList = new ArrayList<DataRow>();
 
-DataRow aRow = new DataRow();
-aRow.addData("color","Blue");
-aRow.addData("frequency",10);
+DataRow aRow = new DataRow().addData("color","Blue").addData("frequency",10);
 
 aList.add(aRow);
 g.replace("dataset_name",aList);
