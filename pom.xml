@@ -24,8 +24,27 @@
   </dependencies>
   
   <build>
-    <sourceDirectory>src</sourceDirectory>
+    <sourceDirectory>src/main/java</sourceDirectory>
     <plugins>
+      <plugin>
+      	<groupId>org.apache.maven.plugins</groupId>
+      	<artifactId>maven-javadoc-plugin</artifactId>
+      	<version>3.0.0-M1</version>
+      	<configuration>
+      		<outputDirectory>${project.basedir}/docs</outputDirectory>
+      		<links>
+      			<link>https://www.joda.org/joda-time/apidocs/index.html</link>
+      		</links>
+      	</configuration>
+      	<executions>
+      		<execution>
+      			<id>generate-javadocs</id>
+      			<goals>
+      				<goal>jar</goal>
+      			</goals>
+      		</execution>
+      	</executions>
+      </plugin>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.3</version>
@@ -37,7 +56,7 @@
     </plugins>
   </build>
   <scm>
-  	<url>https://gitlab.ecec.com/frameworks/geckoboard-dataset-lib</url>
+  	<url></url>
   	<developerConnection>Rob Weber</developerConnection>
   </scm>
 </project>
