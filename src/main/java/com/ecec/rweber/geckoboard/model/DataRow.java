@@ -21,17 +21,21 @@ public class DataRow {
 		m_data = new HashMap<String,Object>();
 	}
 	
-	public void addData(String column, double value){
+	public DataRow addData(String column, double value){
 		//we know it's a doube already, just add it
 		m_data.put(column, value);
+		
+		return this;
 	}
 	
-	public void addData(String column, int value){
+	public DataRow addData(String column, int value){
 		//we know it's an int already, just add it
 		m_data.put(column, value);
+		
+		return this;
 	}
 	
-	public void addData(DataType type, String column, DateTime value){
+	public DataRow addData(DataType type, String column, DateTime value){
 		//helper method for adding date/time values
 		String result = null;
 		
@@ -52,10 +56,10 @@ public class DataRow {
 			result = value.toString();
 		}
 		
-		this.addData(type, column,result);
+		return this.addData(type, column,result);
 	}
 
-	public void addData(DataType type, String column, String value){
+	public DataRow addData(DataType type, String column, String value){
 		
 		if(type == DataType.NUMBER || type == DataType.PERCENTAGE){
 			
@@ -72,6 +76,8 @@ public class DataRow {
 		else {
 			m_data.put(column,value);
 		}
+		
+		return this;
 	}
 	
 	@Override
