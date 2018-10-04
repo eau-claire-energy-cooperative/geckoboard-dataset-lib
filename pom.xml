@@ -32,9 +32,6 @@
       	<version>3.0.0-M1</version>
       	<configuration>
       		<outputDirectory>${project.basedir}/docs</outputDirectory>
-      		<links>
-      			<link>https://www.joda.org/joda-time/apidocs/index.html</link>
-      		</links>
       	</configuration>
       	<executions>
       		<execution>
