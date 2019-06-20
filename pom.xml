@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.ecec</groupId>
   <artifactId>geckoboard-dataset-lib</artifactId>
-  <version>0.1.0</version>
+  <version>0.1.1</version>
   <name>Geckoboard Dataset Lib</name>
   
   <dependencies>
@@ -15,6 +15,16 @@
     	<groupId>org.glassfish.jersey.media</groupId>
     	<artifactId>jersey-media-json-jackson</artifactId>
     	<version>2.25.1</version>
+	</dependency>
+	<dependency>
+  		<groupId>jakarta.xml.bind</groupId>
+		<artifactId>jakarta.xml.bind-api</artifactId>
+  		<version>2.3.2</version>
+	</dependency>
+	<dependency>
+  		<groupId>jakarta.activation</groupId>
+		<artifactId>jakarta.activation-api</artifactId>
+  		<version>1.2.1</version>
 	</dependency>
 	<dependency>
     	<groupId>joda-time</groupId>
@@ -49,8 +59,8 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.3</version>
         <configuration>
-          <source>1.7</source>
-          <target>1.7</target>
+          <source>9</source>
+          <target>9</target>
         </configuration>
       </plugin>
     </plugins>
